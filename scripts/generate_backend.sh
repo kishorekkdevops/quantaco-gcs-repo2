@@ -4,7 +4,7 @@
 USER_VARS_DIR="users"
 
 # Backend bucket
-STATE_BUCKET="terraform-state-bucket"
+STATE_BUCKET="qn-terraform-state-bucket"
 
 # Loop through all .tfvars files
 for USER_FILE in ${USER_VARS_DIR}/*.tfvars; do
@@ -14,7 +14,7 @@ for USER_FILE in ${USER_VARS_DIR}/*.tfvars; do
   cat <<EOF > ${USER_VARS_DIR}/${USER}_backend.tf
 terraform {
   backend "gcs" {
-    bucket  = "${STATE_BUCKET}-${USER}"
+    bucket  = "${STATE_BUCKET}"
     prefix  = "terraform/state/${USER}"
     project = "your-gcp-project-id"
   }
